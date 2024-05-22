@@ -1,4 +1,4 @@
-import { FormArchitecture, runQuery } from "./database_utilitiesNEW.js";
+import { FormArchitecture, runQuery } from "./database_utilities.js";
 /* Abbiamo ora chiesto di importare la variable FormArchitecture e la funzione runQuery implementate nel file
  * database_utilities.js all'interno di questo file. Come potete leggere nell'articolo che vi avevo linkato durante
  * l'ultima lezione
