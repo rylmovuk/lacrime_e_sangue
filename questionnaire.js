@@ -97,13 +97,5 @@ document.addEventListener("DOMContentLoaded", () => {
         insertSurvey(answers);
     }
 
-    // Add event listener to the submit button
-    const submitButton = document.querySelector('.invia-button');
-    if (submitButton) {
-        submitButton.addEventListener('click', submitForm);
-    } else {
-        console.error("Element with class 'invia-button' not found.");
-    }
-
     createForm();
 });
