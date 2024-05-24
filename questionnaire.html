@@ -105,15 +105,17 @@
 
 <body>
     <div class="container">
-        <h1 class="page-title">Grazie per voler contribuire al nostro lavoro</h1>
-        <h2 class="page-subtitle">Ci servono poche informazioni anonime e la tua opinione!</h2>
-        <div class="input" id="FASCIA_ETA_DIV"></div>
-        <div class="input" id="GENERE_DIV"></div>
-        <div class="input" id="REGIONI_DIV"></div>
-        <div class="input" id="EDUCAZIONE_DIV"></div>
-        <div class="input1" id="OP_PERSONALE_DIV"></div>
-        <div class="input1" id="OP_GIORNALE_DIV"></div>
-        <button class="invia-button">Invia</button>
+        <form id="primaryForm" onsubmit="return submitForm()">
+            <h1 class="page-title">Grazie per voler contribuire al nostro lavoro</h1>
+            <h2 class="page-subtitle">Ci servono poche informazioni anonime e la tua opinione!</h2>
+            <div class="input" id="FASCIA_ETA_DIV"></div>
+            <div class="input" id="GENERE_DIV"></div>
+            <div class="input" id="REGIONI_DIV"></div>
+            <div class="input" id="EDUCAZIONE_DIV"></div>
+            <div class="input1" id="OP_PERSONALE_DIV"></div>
+            <div class="input1" id="OP_GIORNALE_DIV"></div>
+            <button class="invia-button" type="submit">Invia</button>
+        </form>
         <div class="footer">
             <p>Questo progetto è frutto del laboratorio 'Digital Humanities' B del Collegio Internazionale Ca' Foscari.
                 
