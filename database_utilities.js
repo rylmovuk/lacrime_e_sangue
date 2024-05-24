@@ -43,3 +43,14 @@ export async function runQuery(sqlQuery) {
         throw error;
     }
 }
+
+export function getNewspaperByHostname(hostname) {
+    const query = `SELECT * FROM GIORNALI WHERE '${hostname}' LIKE CONCAT('%', LINK);`;
+    console.log(query);
+    return runQuery(query).then(result => {
+        if (result.rows == 0) return null;
+        console.log(result);
+        return result.query_result[0].ID_GIORNALE;
+    });
+}
+

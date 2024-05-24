@@ -1,13 +1,6 @@
 import { FormArchitecture, runQuery } from "./database_utilities.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const questionnaireButton = document.getElementById('questionnaireButton');
-    if (questionnaireButton) {
-        questionnaireButton.addEventListener('click', function() {
-            chrome.tabs.create({ url: 'questionnaire.html' });
-        });
-    } 
-
     function createForm() {
         Object.keys(FormArchitecture).forEach(function (selectEntryId) {
             const querySelect = "SELECT * FROM " + FormArchitecture[selectEntryId].table + ";";
@@ -80,7 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 answers.push([FormArchitecture[selectEntryId].name, selectedOptionCasted]);
             });
             console.log(answers);
-            insertSurvey(answers, 5).then(() =>
+            const params = new URLSearchParams(window.location.search);
+            const newspaperID = params.get("nid");
+            insertSurvey(answers, newspaperID).then(() =>
                 window.close()
             );
         } catch (e) { }

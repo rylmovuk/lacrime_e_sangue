@@ -6,7 +6,7 @@
 ////////////////////////////////
 // * 1. CHECKDOMAINS + IMPORT + Funcyion that obtains the percentages *
 // Here we import functions from database.utilities
-import { FormArchitecture, runQuery } from "./database_utilities.js";
+import { FormArchitecture, runQuery, getNewspaperByHostname } from "./database_utilities.js";
 
 // We are creating the function "checkDomains" to compare elements of the domain with the page's URL
 function checkDomains(container, url) {
@@ -23,7 +23,6 @@ function checkDomains(container, url) {
     }
     return -1;
 }
-
 
 function queryPercentage(activeTab) {
     var url = activeTab.url;
@@ -357,3 +356,18 @@ document.querySelector('.close_admin_popup').addEventListener('click', function 
     document.getElementById('questionnaire_expand').style.display = 'none';
     document.getElementById('Questionario_Link').style.display = 'none';
 });
+
+const questionnaireButton = document.getElementById('questionnaireButton');
+if (questionnaireButton) {
+    chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+        const activeTab = tabs[0];
+        const url = new URL(activeTab.url);
+        console.log(url);
+        getNewspaperByHostname(url.hostname).then(newspaperID =>
+            questionnaireButton.addEventListener('click', function() {
+                chrome.tabs.create({ url: `questionnaire.html?nid=${newspaperID}` });
+            })
+        );
+    })
+} 
+
