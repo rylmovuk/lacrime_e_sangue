@@ -46,10 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
         var sql = "INSERT INTO CONNESSIONE_QUESTIONARIO (";
         var columns = answers.map(function(item) { return item[0]; });
         sql += columns.join(", ");
-        sql += ", ID_GIORNALE) VALUES (";
+        sql += ", ID_GIORNALE, DATA_CREAZIONE_TOKEN, TOKEN, SUBMIT, PROCESSED, COOKIE_ID) VALUES (";
         var values = answers.map(function(item) { return "'" + item[1] + "'"; });
         sql += values.join(", ");
-        sql += ", '" + newspaperID + "')";
+        sql += ", '" + newspaperID + "', NOW(), 'unused', 0, 0, 'unused')";
       
         console.log(sql);
         runQuery(sql);
@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             console.log(answers);
             insertSurvey(answers, 5);
+            window.close();
         } catch (e) { }
     }
     
