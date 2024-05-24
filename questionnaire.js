@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(querySelect);
             runQuery(querySelect)
             .then(payload => {
-                const nameColumnValue = "ID_" + FormArchitecture[selectEntryId].name;
+                const nameColumnValue = "ID_" + FormArchitecture[selectEntryId].table;
                 const nameColumnDescription = "DESCRIZIONE";
 
                 if (payload.rows > 0) {
