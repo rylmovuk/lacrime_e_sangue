@@ -27,10 +27,7 @@ function checkDomains(container, url) {
 
 function queryPercentage(activeTab) {
     var url = activeTab.url;
-    
-    // We are showing it in the console.
-    console.log('Current URL:', url);
-    
+
     const queryNewspapers = 'SELECT * FROM GIORNALI;';
     
     // The line above selects all columns from the table named 'GIORNALI'.
@@ -44,10 +41,7 @@ function queryPercentage(activeTab) {
             container[index][1] = result.query_result[index].ID_GIORNALE;
         }
         
-        console.log('Result:', result);
-        
         var newspaperID = checkDomains(container, url);
-        console.log('This newspaper is in our database, with ID: ', newspaperID);
         
         // This line logs a message to the console indicating whether the newspaper is in the database and, if so, with what ID.
         // If the page is not present in the database, the ID will be -1.
@@ -70,8 +64,6 @@ function queryPercentage(activeTab) {
                     const ED = parseInt(rows.query_result[0].ED);
                     const NO = parseInt(rows.query_result[0].NO);
                     
-                    console.log(rows);
-                    
                     // The sum of votes is computed
                     const voti_totali = ES + S + CS + C + CD + D + ED + NO;
                     
@@ -88,8 +80,6 @@ function queryPercentage(activeTab) {
                     ];
                     
                     percentages.sort((a, b) => b.percentage - a.percentage);
-                    console.log(percentages);
-                    
                     return percentages;
                 }
             });
@@ -212,7 +202,7 @@ async function getDetails(newspaperID) {
 async function runCode() {
     const promise = await getDetails(1)
         .then(payload => {
-            console.log(payload);
+
         })
         .catch(error => {
             throw error;
@@ -246,8 +236,6 @@ document.getElementById('results_button').addEventListener('click', function () 
 
             var newspaperID = checkDomains(container, url);
             if (newspaperID >= 0) {
-                console.log('This newspaper is in our database, with ID: ', newspaperID);
-
                 getDetails(newspaperID)
                     .then(details => {
                         var detailsHTML = `
@@ -261,7 +249,6 @@ document.getElementById('results_button').addEventListener('click', function () 
                         // Ensuring the user can see this in the HTML
                         document.getElementById('surprise').innerHTML = detailsHTML;
                         document.getElementById('surprise').style.display = 'block';
-                        console.log(document.getElementById('surprise').innerHTML);
                     })
                     .catch(error => {
                         console.error('Errore durante il recupero dei dettagli del giornale:', error);
@@ -273,9 +260,6 @@ document.getElementById('results_button').addEventListener('click', function () 
             console.error('Error while executing SQL query:', error);
         });
     });
-
-    // Onto the details !
-    // Users should see the full list of information about the relevant newspaper.
 
     
     ////////////////////////////////
