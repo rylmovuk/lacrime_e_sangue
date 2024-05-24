@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function insertSurvey(answers, newspaperID) {
+    async function insertSurvey(answers, newspaperID) {
         var sql = "INSERT INTO CONNESSIONE_QUESTIONARIO (";
         var columns = answers.map(function(item) { return item[0]; });
         sql += columns.join(", ");
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         sql += ", '" + newspaperID + "', NOW(), 'unused', 0, 0, 'unused')";
       
         console.log(sql);
-        runQuery(sql);
+        await runQuery(sql);
       }
 
     function submitForm() {
@@ -80,8 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 answers.push([FormArchitecture[selectEntryId].name, selectedOptionCasted]);
             });
             console.log(answers);
-            insertSurvey(answers, 5);
-            window.close();
+            insertSurvey(answers, 5).then(() =>
+                window.close()
+            );
         } catch (e) { }
     }
     
