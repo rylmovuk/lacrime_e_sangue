@@ -44,8 +44,8 @@ export async function runQuery(sqlQuery) {
     }
 }
 
-export function getNewspaperByHostname(hostname) {
-    const query = `SELECT * FROM GIORNALI WHERE '${hostname}' LIKE CONCAT('%', LINK);`;
+export function getNewspaperByUrl(url) {
+    const query = `SELECT * FROM GIORNALI WHERE '${url}' LIKE CONCAT('%', LINK, '%');`;
     console.log(query);
     return runQuery(query).then(result => {
         if (result.rows == 0) return null;

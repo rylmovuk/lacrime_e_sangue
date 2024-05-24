@@ -73,6 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 answers.push([FormArchitecture[selectEntryId].name, selectedOptionCasted]);
             });
             console.log(answers);
+            
+            // Access the parameter we passed in the URL from the popup
             const params = new URLSearchParams(window.location.search);
             const newspaperID = params.get("nid");
             insertSurvey(answers, newspaperID).then(() =>
