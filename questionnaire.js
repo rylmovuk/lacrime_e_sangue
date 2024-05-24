@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (payload.rows > 0) {
                     const divName = selectEntryId + "_DIV";
-                    console.log("Il DIV " + divName + ", con la select " + selectEntryId + " ha le seguenti opzioni");
 
                     let generatedHtml = `<label for="${FormArchitecture[selectEntryId].name}">${FormArchitecture[selectEntryId].question}</label><br>
                                          <select id="${FormArchitecture[selectEntryId].name}" name="${FormArchitecture[selectEntryId].name}">`;
@@ -35,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
                     generatedHtml += '</select>';
-                    console.log(generatedHtml);
 
                     const targetDiv = document.getElementById(divName);
                     if (targetDiv) {
